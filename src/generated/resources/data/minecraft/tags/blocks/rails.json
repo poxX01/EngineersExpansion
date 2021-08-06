@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "engineersexpansion:steel_rail",
+    "engineersexpansion:steel_rail_intersection",
+    "engineersexpansion:powered_steel_rail"
+  ]
+}

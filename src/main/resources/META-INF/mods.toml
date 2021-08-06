@@ -1,0 +1,28 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+# TODO Update this github URL to refer to our mod.
+#issueTrackerURL="github.com"
+# TODO Include a license
+license="All rights reserved."
+
+[[mods]]
+modId="engineersexpansion"
+version="${file.jarVersion}"
+displayName="Engineer's Expansion"
+authors="poxX, COLDWOLF"
+# TODO Insert a valid github URL
+description="Refer to <insert curseforge/github link> for a description of this mod."
+
+[[dependencies.engineersexpansion]]
+modId="forge"
+mandatory=true
+versionRange="[36,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.engineersexpansion]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.16.5,1.17)"
+ordering="NONE"
+side="BOTH"

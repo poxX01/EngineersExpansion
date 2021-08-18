@@ -1,0 +1,26 @@
+{
+  "variants": {
+    "shape=north_south": {
+      "model": "engineersexpansion:block/steel_rail_flat"
+    },
+    "shape=east_west": {
+      "model": "engineersexpansion:block/steel_rail_flat",
+      "y": 90
+    },
+    "shape=ascending_east": {
+      "model": "engineersexpansion:block/steel_rail_raised",
+      "y": 90
+    },
+    "shape=ascending_west": {
+      "model": "engineersexpansion:block/steel_rail_raised",
+      "y": 270
+    },
+    "shape=ascending_north": {
+      "model": "engineersexpansion:block/steel_rail_raised"
+    },
+    "shape=ascending_south": {
+      "model": "engineersexpansion:block/steel_rail_raised",
+      "y": 180
+    }
+  }
+}

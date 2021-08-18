@@ -14,11 +14,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 import poxx.engineersexpansion.common.blocks.steelrails.SteelRail;
 import poxx.engineersexpansion.common.blocks.steelrails.SteelRailIntersection;
 import poxx.engineersexpansion.common.blocks.steelrails.SteelRailPowered;
+import poxx.engineersexpansion.common.items.Tachometer;
 
 import static poxx.engineersexpansion.EngineersExpansion.MODID;
 
 public final class PXContent {
-    private static final ItemGroup ITEMGROUP = new ItemGroup(MODID) {
+    public static final ItemGroup ITEMGROUP = new ItemGroup(MODID) {
         @OnlyIn(Dist.CLIENT)
         public ItemStack makeIcon() { return new ItemStack(PXBlocks.STEEL_RAIL.get());}
     };
@@ -39,6 +40,7 @@ public final class PXContent {
     public static abstract class PXItems {
         public static final DeferredRegister<Item> ITEM_REGISTER = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
 
+        public static final RegistryObject<Item> TACHOMETER = ITEM_REGISTER.register("tachometer", Tachometer::new);
     }
 
     public static void construct() {

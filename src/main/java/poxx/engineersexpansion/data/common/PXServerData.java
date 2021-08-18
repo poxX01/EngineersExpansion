@@ -14,6 +14,7 @@ final class PXServerData {
         DataGenerator dataGenerator = event.getGenerator();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
+        dataGenerator.addProvider(new PXRecipeProvider(dataGenerator));
         dataGenerator.addProvider(new PXLootTableProvider(dataGenerator));
         dataGenerator.addProvider(new PXBlockTagsProvider(dataGenerator, existingFileHelper));
     }

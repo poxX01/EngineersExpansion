@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "shape=north_south": {
+      "model": "engineersexpansion:block/steel_rail_intersection"
+    },
+    "shape=east_west": {
+      "model": "engineersexpansion:block/steel_rail_intersection"
+    },
+    "shape=ascending_east": {
+      "model": "engineersexpansion:block/steel_rail_intersection"
+    },
+    "shape=ascending_west": {
+      "model": "engineersexpansion:block/steel_rail_intersection"
+    },
+    "shape=ascending_north": {
+      "model": "engineersexpansion:block/steel_rail_intersection"
+    },
+    "shape=ascending_south": {
+      "model": "engineersexpansion:block/steel_rail_intersection"
+    }
+  }
+}

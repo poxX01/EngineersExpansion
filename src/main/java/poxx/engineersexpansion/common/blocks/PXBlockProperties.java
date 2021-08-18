@@ -8,7 +8,7 @@ public abstract class PXBlockProperties {
     public static final AbstractBlock.Properties STEEL_RAIL_PROPERTIES = AbstractBlock.Properties
             .of(Material.METAL)
             .sound(SoundType.METAL)
-            .strength(0.7F, 1200F)
+            .strength(0.7F, 5F)
             .harvestLevel(0)
             .noCollission()
             .noOcclusion(); //Only needed when using 3D block models

@@ -6,7 +6,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.minecart.AbstractMinecartEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import poxx.engineersexpansion.common.blocks.PXBlockProperties;
 
@@ -21,14 +20,10 @@ public class SteelRailPowered extends PoweredRailBlock {
             Vector3d movementVector = cart.getDeltaMovement();
             double deltaMovement = Math.sqrt(Entity.getHorizontalDistanceSqr(movementVector));
             if (deltaMovement > 0.01D){
-                cart.setDeltaMovement(movementVector.add(movementVector.x / deltaMovement * 0.12D, 0.0D, movementVector.z / deltaMovement * 0.12D));
+                cart.setDeltaMovement(movementVector
+                        .add(movementVector.x / deltaMovement * 0.12D, 0.0D, movementVector.z / deltaMovement * 0.12D));
             }
         }
-    }
-
-    @Override
-    public boolean isFlexibleRail(BlockState state, IBlockReader world, BlockPos pos){
-        return false;
     }
 
     @Override

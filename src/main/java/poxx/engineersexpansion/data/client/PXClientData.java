@@ -17,6 +17,5 @@ final class PXClientData {
 
         dataGenerator.addProvider(new PXLanguageProvider(dataGenerator));
         dataGenerator.addProvider(new PXBlockStateProvider(dataGenerator, existingFileHelper));
-        dataGenerator.addProvider(new PXItemModelProvider(dataGenerator, existingFileHelper));
     }
 }

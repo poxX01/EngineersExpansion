@@ -3,6 +3,8 @@
   "values": [
     "engineersexpansion:steel_rail",
     "engineersexpansion:steel_rail_intersection",
-    "engineersexpansion:powered_steel_rail"
+    "engineersexpansion:powered_steel_rail",
+    "engineersexpansion:activator_steel_rail",
+    "engineersexpansion:detector_steel_rail"
   ]
 }

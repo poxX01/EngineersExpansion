@@ -7,7 +7,7 @@
   ],
   "key": {
     "S": {
-      "tag": "forge:ingots/steel"
+      "tag": "forge:rods/steel"
     },
     "-": {
       "item": "immersiveengineering:stick_treated"

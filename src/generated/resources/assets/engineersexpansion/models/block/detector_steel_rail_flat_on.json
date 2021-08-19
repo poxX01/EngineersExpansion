@@ -1,0 +1,7 @@
+{
+  "parent": "engineersexpansion:block/detector_steel_rail_flat",
+  "textures": {
+    "0": "engineersexpansion:block/detector_steel_rail_on",
+    "particle": "engineersexpansion:block/detector_steel_rail_on"
+  }
+}

@@ -1,8 +1,8 @@
 {
 	"ambientocclusion": false,
 	"textures": {
-		"0": "engineersexpansion:steel_detector_rail_on",
-		"particle": "engineersexpansion:steel_detector_rail_on"
+		"0": "engineersexpansion:block/detector_steel_rail",
+		"particle": "engineersexpansion:block/detector_steel_rail"
 	},
 	"elements": [
 		{
@@ -307,7 +307,7 @@
 		{
 			"name": "Detector 2",
 			"from": [6, 1, 6],
-			"to": [10, 1.1, 10],
+			"to": [10, 1.5, 10],
 			"faces": {
 				"north": {"uv": [6, 6, 10, 7], "rotation": 180, "texture": "#0"},
 				"east": {"uv": [6, 6, 7, 10], "rotation": 90, "texture": "#0"},

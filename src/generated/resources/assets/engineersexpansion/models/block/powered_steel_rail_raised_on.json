@@ -1,0 +1,7 @@
+{
+  "parent": "engineersexpansion:block/powered_steel_rail_raised",
+  "textures": {
+    "0": "engineersexpansion:block/powered_steel_rail_on",
+    "particle": "engineersexpansion:block/powered_steel_rail_on"
+  }
+}

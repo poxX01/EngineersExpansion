@@ -11,9 +11,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import poxx.engineersexpansion.common.blocks.steelrails.SteelRail;
-import poxx.engineersexpansion.common.blocks.steelrails.SteelRailIntersection;
-import poxx.engineersexpansion.common.blocks.steelrails.SteelRailPowered;
+import poxx.engineersexpansion.common.blocks.steelrails.*;
 import poxx.engineersexpansion.common.items.Tachometer;
 
 import static poxx.engineersexpansion.EngineersExpansion.MODID;
@@ -29,6 +27,8 @@ public final class PXContent {
         public static final RegistryObject<Block> STEEL_RAIL = BLOCK_REGISTER.register("steel_rail", SteelRail::new);
         public static final RegistryObject<Block> STEEL_RAIL_INTERSECTION = BLOCK_REGISTER.register("steel_rail_intersection", SteelRailIntersection::new);
         public static final RegistryObject<Block> STEEL_RAIL_POWERED = BLOCK_REGISTER.register("powered_steel_rail", SteelRailPowered::new);
+        public static final RegistryObject<Block> STEEL_RAIL_ACTIVATOR = BLOCK_REGISTER.register("activator_steel_rail", SteelRailActivator::new);
+        public static final RegistryObject<Block> STEEL_RAIL_DETECTOR = BLOCK_REGISTER.register("detector_steel_rail", SteelRailDetector::new);
 
         static void buildBlockItems(){
             for (RegistryObject<Block> block : BLOCK_REGISTER.getEntries()){

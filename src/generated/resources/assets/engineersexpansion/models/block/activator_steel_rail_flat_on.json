@@ -1,0 +1,7 @@
+{
+  "parent": "engineersexpansion:block/activator_steel_rail_flat",
+  "textures": {
+    "0": "engineersexpansion:block/activator_steel_rail_on",
+    "particle": "engineersexpansion:block/activator_steel_rail_on"
+  }
+}

@@ -21,24 +21,24 @@ public class PXRecipeProvider extends RecipeProvider {
 
     @Override
     public void buildShapelessRecipes(Consumer<IFinishedRecipe> recipeConsumer){
-        ITag<Item> steelIngot = ItemTags.createOptional(new ResourceLocation("forge", "ingots/steel"));
+        ITag<Item> steelRod = ItemTags.createOptional(new ResourceLocation("forge", "rods/steel"));
         ITag<Item> copperIngot = ItemTags.createOptional(new ResourceLocation("forge", "ingots/copper"));
 
         ShapedRecipeBuilder.shaped(PXContent.PXBlocks.STEEL_RAIL.get(), 16)
-                .define('S', steelIngot)
+                .define('S', steelRod)
                 .define('-', IEItems.Ingredients.stickTreated)
                 .pattern("S S")
                 .pattern("S-S")
                 .pattern("S S")
-                .unlockedBy("has_item", has(steelIngot))
+                .unlockedBy("has_item", has(steelRod))
                 .save(recipeConsumer);
         ShapedRecipeBuilder.shaped(PXContent.PXBlocks.STEEL_RAIL_INTERSECTION.get(), 4)
-                .define('S', steelIngot)
+                .define('S', steelRod)
                 .define('R', PXContent.PXBlocks.STEEL_RAIL.get())
                 .pattern(" R ")
                 .pattern("RSR")
                 .pattern(" R ")
-                .unlockedBy("has_item", has(steelIngot))
+                .unlockedBy("has_item", has(steelRod))
                 .save(recipeConsumer);
         ShapedRecipeBuilder.shaped(PXContent.PXBlocks.STEEL_RAIL_POWERED.get())
                 .define('C', copperIngot)
@@ -47,7 +47,7 @@ public class PXRecipeProvider extends RecipeProvider {
                 .pattern(" C ")
                 .pattern(" R ")
                 .pattern(" D ")
-                .unlockedBy("has_item", has(steelIngot))
+                .unlockedBy("has_item", has(steelRod))
                 .save(recipeConsumer);
     }
 }

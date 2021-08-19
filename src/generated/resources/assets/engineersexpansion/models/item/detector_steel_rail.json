@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "engineersexpansion:block/detector_steel_rail"
+  }
+}

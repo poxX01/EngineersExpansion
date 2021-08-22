@@ -1,6 +1,7 @@
 package poxx.engineersexpansion.data.common;
 
 import blusunrize.immersiveengineering.common.items.IEItems;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.RecipeProvider;
@@ -45,6 +46,24 @@ public class PXRecipeProvider extends RecipeProvider {
                 .define('R', PXContent.PXBlocks.STEEL_RAIL.get())
                 .define('D', Tags.Items.DUSTS_REDSTONE)
                 .pattern(" C ")
+                .pattern(" R ")
+                .pattern(" D ")
+                .unlockedBy("has_item", has(steelRod))
+                .save(recipeConsumer);
+        ShapedRecipeBuilder.shaped(PXContent.PXBlocks.STEEL_RAIL_ACTIVATOR.get())
+                .define('T', Blocks.REDSTONE_TORCH)
+                .define('R', PXContent.PXBlocks.STEEL_RAIL.get())
+                .define('D', Tags.Items.DUSTS_REDSTONE)
+                .pattern(" T ")
+                .pattern(" R ")
+                .pattern(" D ")
+                .unlockedBy("has_item", has(steelRod))
+                .save(recipeConsumer);
+        ShapedRecipeBuilder.shaped(PXContent.PXBlocks.STEEL_RAIL_DETECTOR.get())
+                .define('P', Blocks.POLISHED_BLACKSTONE_PRESSURE_PLATE)
+                .define('R', PXContent.PXBlocks.STEEL_RAIL.get())
+                .define('D', Tags.Items.DUSTS_REDSTONE)
+                .pattern(" P ")
                 .pattern(" R ")
                 .pattern(" D ")
                 .unlockedBy("has_item", has(steelRod))

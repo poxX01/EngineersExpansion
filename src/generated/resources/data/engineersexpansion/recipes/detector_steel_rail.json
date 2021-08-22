@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " P ",
+    " R ",
+    " D "
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:polished_blackstone_pressure_plate"
+    },
+    "R": {
+      "item": "engineersexpansion:steel_rail"
+    },
+    "D": {
+      "tag": "forge:dusts/redstone"
+    }
+  },
+  "result": {
+    "item": "engineersexpansion:detector_steel_rail"
+  }
+}

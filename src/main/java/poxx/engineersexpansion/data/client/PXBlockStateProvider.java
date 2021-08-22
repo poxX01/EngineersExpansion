@@ -15,6 +15,7 @@ import net.minecraftforge.fml.RegistryObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import poxx.engineersexpansion.EngineersExpansion;
+import poxx.engineersexpansion.common.PXContent;
 import poxx.engineersexpansion.common.PXContent.PXBlocks;
 import poxx.engineersexpansion.common.blocks.steelrails.SteelRailPowered;
 
@@ -36,32 +37,6 @@ final class PXBlockStateProvider extends BlockStateProvider {
                 .filter(registryObject -> registryObject.get().getStateDefinition()
                         .getProperties().contains(BlockStateProperties.POWERED))
                 .forEach(this::buildPoweredRailStates);
-        //Powered Steel Rail
-//        for (Boolean isPowered : SteelRailPowered.POWERED.getPossibleValues()) {
-//            ModelFile flatModel = !isPowered ? models().getExistingFile(modLoc("block/powered_steel_rail_flat")) :
-//                    models().withExistingParent("powered_steel_rail_flat_on", modLoc(myPath+"_flat"))
-//                            .texture("0", modLoc("block/"+myPath+"_on"))
-//                            .texture("particle", modLoc("block/"+myPath+"_on"));
-//            ModelFile raisedModel = !isPowered ? models().getExistingFile(modLoc("block/powered_steel_rail_raised")) :
-//                    models().withExistingParent("powered_steel_rail_raised_on", modLoc(myPath+"_raised"))
-//                            .texture("0", modLoc("block/"+myPath+"_on"))
-//                            .texture("particle", modLoc("block/"+myPath+"_on"));
-//            for (RailShape railShape : SteelRailPowered.SHAPE.getPossibleValues()) {
-//                ConfiguredModel.Builder<MultiPartBlockStateBuilder.PartBuilder> currentBuilder = getMultipartBuilder(PXBlocks.STEEL_RAIL_POWERED.get()).part();
-//                if (!railShape.isAscending()) {
-//                    currentBuilder.modelFile(flatModel);
-//                } else {
-//                    currentBuilder.modelFile(raisedModel);
-//                }
-//                switch (railShape) {
-//                    case EAST_WEST:
-//                    case ASCENDING_EAST: currentBuilder.rotationY(90); break;
-//                    case ASCENDING_SOUTH: currentBuilder.rotationY(180); break;
-//                    case ASCENDING_WEST: currentBuilder.rotationY(270); break;
-//                }
-//                currentBuilder.addModel().condition(SteelRailPowered.SHAPE, railShape).condition(SteelRailPowered.POWERED, isPowered);
-//            }
-//        }
 
         for (RegistryObject<Block> registryObject : PXBlocks.BLOCK_REGISTER.getEntries()){
             Block currentBlock = registryObject.get();
@@ -70,6 +45,7 @@ final class PXBlockStateProvider extends BlockStateProvider {
                 itemModels().getBuilder(currentPath).parent(itemGenerated).texture("layer0", "block/" + currentPath);
             }
         }
+        itemModels().getBuilder(PXContent.PXItems.TACHOMETER.getId().getPath()).texture("layer0", "item/" + PXContent.PXItems.TACHOMETER.getId().getPath());
     }
     private ConfiguredModel[] getBasicRailModel(BlockState blockState){
         String path = blockState.getBlock().getRegistryName().getPath();

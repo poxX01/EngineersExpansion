@@ -5,8 +5,6 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -18,7 +16,6 @@ import static poxx.engineersexpansion.EngineersExpansion.MODID;
 
 public final class PXContent {
     public static final ItemGroup ITEMGROUP = new ItemGroup(MODID) {
-        @OnlyIn(Dist.CLIENT)
         public ItemStack makeIcon() { return new ItemStack(PXBlocks.STEEL_RAIL.get());}
     };
 

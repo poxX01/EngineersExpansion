@@ -14,7 +14,6 @@ final class PXClientData {
     public static void gatherData(GatherDataEvent event){
         DataGenerator dataGenerator = event.getGenerator();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
-//        final Path projectRoot = Paths.get(".").n
 
         dataGenerator.addProvider(new PXLanguageProvider(dataGenerator));
         dataGenerator.addProvider(new PXBlockStateProvider(dataGenerator, existingFileHelper));

@@ -15,7 +15,6 @@ import net.minecraftforge.fml.RegistryObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import poxx.engineersexpansion.EngineersExpansion;
-import poxx.engineersexpansion.common.PXContent;
 import poxx.engineersexpansion.common.PXContent.PXBlocks;
 import poxx.engineersexpansion.common.blocks.steelrails.SteelRailPowered;
 
@@ -45,7 +44,6 @@ final class PXBlockStateProvider extends BlockStateProvider {
                 itemModels().getBuilder(currentPath).parent(itemGenerated).texture("layer0", "block/" + currentPath);
             }
         }
-        itemModels().getBuilder(PXContent.PXItems.TACHOMETER.getId().getPath()).texture("layer0", "item/" + PXContent.PXItems.TACHOMETER.getId().getPath());
     }
     private ConfiguredModel[] getBasicRailModel(BlockState blockState){
         String path = blockState.getBlock().getRegistryName().getPath();

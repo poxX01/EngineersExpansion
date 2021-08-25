@@ -1,28 +1,22 @@
 {
 	"ambientocclusion": false,
 	"textures": {
-		"0": "engineersexpansion:item/tachometer",
-		"1": "engineersexpansion:item/tachometer_frame"
+		"0": "engineersexpansion:item/tachometer/tachometer",
+		"1": "engineersexpansion:item/tachometer/tachometer_frame",
+		"2": "engineersexpansion:item/tachometer/tachometerbackground",
+		"3": "engineersexpansion:item/tachometer/autoOff",
+		"4": "engineersexpansion:item/tachometer/isOn",
+		"5": "engineersexpansion:item/tachometer/decimal",
+		"6": "engineersexpansion:item/tachometer/digit1",
+		"7": "engineersexpansion:item/tachometer/digit2",
+		"8": "engineersexpansion:item/tachometer/digit3",
+		"particle": "engineersexpansion:item/tachometer/tachometerbackground"
 	},
 	"elements": [
 		{
-			"name": "display",
-			"from": [1, 1, 8],
-			"to": [15, 6, 9],
-			"rotation": {"angle": 0, "axis": "x", "origin": [8, 3.5, 1.33333]},
-			"faces": {
-				"north": {"uv": [0, 0, 14, 5], "texture": "#0"},
-				"east": {"uv": [0, 0, 1, 5], "texture": "#0"},
-				"south": {"uv": [0, 0, 8.75, 2.75], "texture": "#0"},
-				"west": {"uv": [0, 0, 1, 5], "texture": "#0"},
-				"up": {"uv": [0, 0, 14, 1], "texture": "#0"},
-				"down": {"uv": [0, 0, 14, 1], "texture": "#0"}
-			}
-		},
-		{
 			"name": "frameleft",
 			"from": [0, 0, 8],
-			"to": [1, 7, 9],
+			"to": [1, 7.5, 9],
 			"rotation": {"angle": 0, "axis": "x", "origin": [8, 3.5, 1.33333]},
 			"faces": {
 				"north": {"uv": [0, 0, 1, 7], "texture": "#1"},
@@ -36,7 +30,7 @@
 		{
 			"name": "frameright",
 			"from": [15, 0, 8],
-			"to": [16, 7, 9],
+			"to": [16, 7.5, 9],
 			"rotation": {"angle": 0, "axis": "x", "origin": [8, 3.5, 1.33333]},
 			"faces": {
 				"north": {"uv": [0, 0, 1, 7], "texture": "#1"},
@@ -50,7 +44,7 @@
 		{
 			"name": "frametop",
 			"from": [1, 6, 8],
-			"to": [15, 7, 9],
+			"to": [15, 7.5, 9],
 			"rotation": {"angle": 0, "axis": "x", "origin": [8, 3.5, 1.33333]},
 			"faces": {
 				"north": {"uv": [0, 0, 14, 1], "texture": "#1"},
@@ -78,7 +72,7 @@
 		{
 			"name": "frameback",
 			"from": [0, 0, 7],
-			"to": [16, 7, 8],
+			"to": [16, 7.5, 8],
 			"rotation": {"angle": 0, "axis": "x", "origin": [8, 3.5, 1.33333]},
 			"faces": {
 				"north": {"uv": [0, 0, 16, 7], "texture": "#1"},
@@ -87,6 +81,122 @@
 				"west": {"uv": [0, 0, 1, 7], "texture": "#1"},
 				"up": {"uv": [0, 0, 16, 1], "texture": "#1"},
 				"down": {"uv": [0, 0, 16, 1], "texture": "#1"}
+			}
+		},
+		{
+			"name": "autoOff",
+			"from": [13, 7, 8.25],
+			"to": [14, 8, 9.25],
+			"faces": {
+				"north": {"uv": [0, 0, 1, 1], "texture": "#3"},
+				"east": {"uv": [0, 0, 1, 1], "texture": "#3"},
+				"south": {"uv": [0, 0, 1, 1], "texture": "#3"},
+				"west": {"uv": [0, 0, 1, 1], "texture": "#3"},
+				"up": {"uv": [0, 0, 1, 1], "texture": "#3"},
+				"down": {"uv": [0, 0, 1, 1], "texture": "#3"}
+			}
+		},
+		{
+			"name": "isOn",
+			"from": [14.25, 7, 8.25],
+			"to": [15.25, 7.75, 9.25],
+			"faces": {
+				"north": {"uv": [0, 0, 1, 0.75], "texture": "#4"},
+				"east": {"uv": [0, 0, 1, 0.75], "texture": "#4"},
+				"south": {"uv": [0, 0, 1, 0.75], "texture": "#4"},
+				"west": {"uv": [0, 0, 1, 0.75], "texture": "#4"},
+				"up": {"uv": [0, 0, 1, 1], "texture": "#4"},
+				"down": {"uv": [0, 0, 1, 1], "texture": "#4"}
+			}
+		},
+		{
+			"name": "digit1",
+			"from": [1, 1, 8],
+			"to": [4, 6, 9],
+			"faces": {
+				"north": {"uv": [0, 0, 3, 5], "texture": "#6"},
+				"east": {"uv": [0, 0, 1, 5], "texture": "#6"},
+				"south": {"uv": [0, 0, 3, 5], "texture": "#6"},
+				"west": {"uv": [0, 0, 1, 5], "texture": "#6"},
+				"up": {"uv": [0, 0, 3, 1], "texture": "#6"},
+				"down": {"uv": [0, 0, 3, 1], "texture": "#6"}
+			}
+		},
+		{
+			"name": "digit2",
+			"from": [5, 1, 8],
+			"to": [8, 6, 9],
+			"faces": {
+				"north": {"uv": [0, 0, 3, 5], "texture": "#7"},
+				"east": {"uv": [0, 0, 1, 5], "texture": "#7"},
+				"south": {"uv": [0, 0, 3, 5], "texture": "#7"},
+				"west": {"uv": [0, 0, 1, 5], "texture": "#7"},
+				"up": {"uv": [0, 0, 3, 1], "texture": "#7"},
+				"down": {"uv": [0, 0, 3, 1], "texture": "#7"}
+			}
+		},
+		{
+			"name": "digit3",
+			"from": [8, 1, 8],
+			"to": [11, 6, 9],
+			"faces": {
+				"north": {"uv": [0, 0, 3, 5], "texture": "#8"},
+				"east": {"uv": [0, 0, 1, 5], "texture": "#8"},
+				"south": {"uv": [0, 0, 3, 5], "texture": "#8"},
+				"west": {"uv": [0, 0, 1, 5], "texture": "#8"},
+				"up": {"uv": [0, 0, 3, 1], "texture": "#8"},
+				"down": {"uv": [0, 0, 3, 1], "texture": "#8"}
+			}
+		},
+		{
+			"from": [11, 1, 8],
+			"to": [15, 4, 9],
+			"faces": {
+				"north": {"uv": [0, 0, 4, 3], "texture": "#0"},
+				"east": {"uv": [0, 0, 1, 3], "texture": "#0"},
+				"south": {"uv": [4.25, 0, 8.75, 2.75], "texture": "#0"},
+				"west": {"uv": [0, 0, 1, 3], "texture": "#0"},
+				"up": {"uv": [0, 0, 4, 1], "texture": "#0"},
+				"down": {"uv": [0, 0, 4, 1], "texture": "#0"}
+			}
+		},
+		{
+			"name": "background",
+			"from": [11, 4, 8],
+			"to": [15, 6, 9],
+			"faces": {
+				"north": {"uv": [0, 0, 4, 2], "texture": "#2"},
+				"east": {"uv": [0, 0, 1, 2], "texture": "#2"},
+				"south": {"uv": [0, 0, 4, 2], "texture": "#2"},
+				"west": {"uv": [0, 0, 1, 2], "texture": "#2"},
+				"up": {"uv": [0, 0, 4, 1], "texture": "#2"},
+				"down": {"uv": [0, 0, 4, 1], "texture": "#2"}
+			}
+		},
+		{
+			"name": "background2",
+			"from": [4, 2, 8],
+			"to": [5, 6, 9],
+			"faces": {
+				"north": {"uv": [0, 0, 1, 4], "texture": "#2"},
+				"east": {"uv": [0, 0, 1, 4], "texture": "#2"},
+				"south": {"uv": [0, 0, 1, 4], "texture": "#2"},
+				"west": {"uv": [0, 0, 1, 4], "texture": "#2"},
+				"up": {"uv": [0, 0, 1, 1], "texture": "#2"},
+				"down": {"uv": [0, 0, 1, 1], "texture": "#2"}
+			}
+		},
+		{
+			"name": "decimal",
+			"from": [4, 1, 8],
+			"to": [5, 2, 9],
+			"faces": {
+				"north": {"uv": [0, 0, 1, 1], "texture": "#5"},
+				"east": {"uv": [0, 0, 1, 1], "texture": "#5"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#5"},
+				"west": {"uv": [0, 0, 1, 1], "texture": "#5"},
+				"up": {"uv": [0, 0, 1, 1], "texture": "#5"},
+				"down": {"uv": [0, 0, 1, 1], "texture": "#5"}
 			}
 		}
 	],

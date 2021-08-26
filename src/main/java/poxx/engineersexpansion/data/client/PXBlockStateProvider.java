@@ -6,6 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.RailShape;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -18,6 +19,10 @@ import poxx.engineersexpansion.EngineersExpansion;
 import poxx.engineersexpansion.common.PXContent.PXBlocks;
 import poxx.engineersexpansion.common.blocks.steelrails.SteelRailPowered;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+
 final class PXBlockStateProvider extends BlockStateProvider {
     final Logger logger = LogManager.getLogger(EngineersExpansion.MODID);
 
@@ -27,22 +32,39 @@ final class PXBlockStateProvider extends BlockStateProvider {
     public void registerStatesAndModels(){
         ModelFile itemGenerated = itemModels().getExistingFile(mcLoc("item/generated"));
 
-        //Steel Rail
+        //Generate block models for basic Steel Rail & the intersection
         getVariantBuilder(PXBlocks.STEEL_RAIL.get()).forAllStates(this::getBasicRailModel);
         getVariantBuilder(PXBlocks.STEEL_RAIL_INTERSECTION.get()).forAllStates(blockState ->
                 new ConfiguredModel[] {new ConfiguredModel(models().getExistingFile(modLoc("block/steel_rail_intersection")))});
 
+        //Generate block models for powered rails and their blockstates
         PXBlocks.BLOCK_REGISTER.getEntries().stream()
                 .filter(registryObject -> registryObject.get().getStateDefinition()
                         .getProperties().contains(BlockStateProperties.POWERED))
                 .forEach(this::buildPoweredRailStates);
 
-        for (RegistryObject<Block> registryObject : PXBlocks.BLOCK_REGISTER.getEntries()){
-            Block currentBlock = registryObject.get();
-            if (currentBlock instanceof AbstractRailBlock){
-                String currentPath = currentBlock.getRegistryName().getPath();
-                itemModels().getBuilder(currentPath).parent(itemGenerated).texture("layer0", "block/" + currentPath);
-            }
+        //Generate 2D item models for all registered AbstractRailBlocks
+        PXBlocks.BLOCK_REGISTER.getEntries().stream()
+                .filter(registryObject -> registryObject.get() instanceof AbstractRailBlock)
+                .forEach(registryObject -> itemModels().withExistingParent(registryObject.getId().getPath(), itemGenerated.getLocation())
+                        .texture("layer0", "block/" + registryObject.getId().getPath()));
+
+        //Generate Tachometer speed readout models and assign predicates to the base model
+        ResourceLocation tachometerOnBasePath = modLoc("item/tachometer_base_on");
+        DecimalFormat decimalFormat = new DecimalFormat("00.0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
+        for (float f = 0F; f < 24.1F; f += 0.1F){
+            String fString = decimalFormat.format(f);
+            char[] fChars = fString.toCharArray(); //fChars[2] is the decimal point
+            ModelFile currentModel = itemModels().withExistingParent("tachometer/tachometer_" +
+                            fString.replace('.', '_'), tachometerOnBasePath)
+                    .texture("decimalDot", "digit/decimal_dot")
+                    .texture("unit", "digit/unit_blocks_per_second")
+                    .texture("digit2", "digit/digit_"+fChars[0])
+                    .texture("digit1", "digit/digit_"+fChars[1])
+                    .texture("decimalDigit1", "digit/digit_"+fChars[3]);
+            itemModels()
+                    .withExistingParent("item/tachometer", tachometerOnBasePath)
+                    .override().predicate(modLoc("minecart_speed"), f/24.1F).model(currentModel);
         }
     }
     private ConfiguredModel[] getBasicRailModel(BlockState blockState){
@@ -87,7 +109,6 @@ final class PXBlockStateProvider extends BlockStateProvider {
             }
         }
     }
-
     private ModelFile getExistingModBlockModel(String path){
         return models().getExistingFile(modLoc("block/"+path));
     }

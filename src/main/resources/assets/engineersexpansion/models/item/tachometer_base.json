@@ -1,16 +1,16 @@
 {
 	"ambientocclusion": false,
 	"textures": {
-		"8": "engineersexpansion:item/decimaldigit1",
-		"unit": "engineersexpansion:item/tachometer",
-		"frame": "engineersexpansion:item/tachometer_frame",
-		"background": "engineersexpansion:item/tachometerbackground",
 		"is_on": "engineersexpansion:item/is_on",
 		"auto_off": "engineersexpansion:item/auto_off",
-		"digit2": "engineersexpansion:item/digit2",
-		"digit1": "engineersexpansion:item/digit1",
-		"decimalDot": "engineersexpansion:item/decimal",
-		"particle": "engineersexpansion:item/decimaldigit1"
+		"frame": "engineersexpansion:item/tachometer_frame",
+		"background": "engineersexpansion:item/tachometerbackground",
+		"unit": "engineersexpansion:item/tachometerbackground",
+		"digit2": "engineersexpansion:item/tachometerbackground",
+		"digit1": "engineersexpansion:item/tachometerbackground",
+		"decimalDot": "engineersexpansion:item/tachometerbackground",
+		"decimalDigit1": "engineersexpansion:item/tachometerbackground",
+		"particle": "engineersexpansion:item/tachometerbackground"
 	},
 	"elements": [
 		{
@@ -140,12 +140,12 @@
 			"from": [8, 1, 8],
 			"to": [11, 6, 9],
 			"faces": {
-				"north": {"uv": [0, 0, 3, 5], "texture": "#8"},
-				"east": {"uv": [0, 0, 1, 5], "texture": "#8"},
-				"south": {"uv": [0, 0, 7, 11], "texture": "#8"},
-				"west": {"uv": [0, 0, 1, 5], "texture": "#8"},
-				"up": {"uv": [0, 0, 3, 1], "texture": "#8"},
-				"down": {"uv": [0, 0, 3, 1], "texture": "#8"}
+				"north": {"uv": [0, 0, 3, 5], "texture": "#decimalDigit1"},
+				"east": {"uv": [0, 0, 1, 5], "texture": "#decimalDigit1"},
+				"south": {"uv": [0, 0, 7, 11], "texture": "#decimalDigit1"},
+				"west": {"uv": [0, 0, 1, 5], "texture": "#decimalDigit1"},
+				"up": {"uv": [0, 0, 3, 1], "texture": "#decimalDigit1"},
+				"down": {"uv": [0, 0, 3, 1], "texture": "#decimalDigit1"}
 			}
 		},
 		{

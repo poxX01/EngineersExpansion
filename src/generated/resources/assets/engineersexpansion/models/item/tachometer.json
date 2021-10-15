@@ -1,5 +1,5 @@
 {
-  "parent": "engineersexpansion:item/tachometer_base",
+  "parent": "engineersexpansion:item/tachometer_base_on",
   "overrides": [
     {
       "predicate": {

@@ -6,10 +6,12 @@ import net.minecraftforge.common.data.LanguageProvider;
 import poxx.engineersexpansion.EngineersExpansion;
 import poxx.engineersexpansion.common.PXContent;
 
-final class PXLanguageProvider extends LanguageProvider {
+public final class PXLanguageProvider extends LanguageProvider {
     PXLanguageProvider(DataGenerator dataGenerator){
         super(dataGenerator, EngineersExpansion.MODID, "en_us");
     }
+
+    public static final String infoEnergyStored = stringWithModID("info", "energyStored");
 
     public void addTranslations(){
         PXContent.PXBlocks.BLOCK_REGISTER.getEntries().forEach(element -> add(element.get(), translateToDislpayName(element.getId().getPath())));
@@ -17,15 +19,21 @@ final class PXLanguageProvider extends LanguageProvider {
                 .filter(itemRegistryObject -> !(itemRegistryObject.get() instanceof BlockItem))
                 .forEach(element -> add(element.get(), translateToDislpayName(element.getId().getPath())));
 
-        add("itemGroup.engineersexpansion", "Engineer's Expansion");
+        add(stringWithModID("itemGroup"), "Engineer's Expansion");
+        add(infoEnergyStored, "Energy stored: %1$dRF/%2$dRF");
     }
-
-    private String translateToDislpayName(String idName){
+    private static String translateToDislpayName(String idName){
         String[] currentName = idName.split("_");
         for (int index = 0; index < currentName.length; index++){
             String currentString = currentName[index];
             currentName[index] = Character.toUpperCase(currentString.charAt(0)) + currentString.substring(1);
         }
         return String.join(" ", currentName);
+    }
+    private static String stringWithModID(String prefix, String suffix){
+        return prefix + "."+EngineersExpansion.MODID+"."+ suffix;
+    }
+    private static String stringWithModID(String prefix){
+        return prefix + "."+EngineersExpansion.MODID;
     }
 }

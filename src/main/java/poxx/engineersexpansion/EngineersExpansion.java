@@ -2,14 +2,17 @@ package poxx.engineersexpansion;
 
 import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import poxx.engineersexpansion.client.MinecartSpeedPropertyGetter;
 import poxx.engineersexpansion.common.PXContent;
+import poxx.engineersexpansion.server.capabilities.powereddevice.CapabilityPoweredDevice;
 
 @Mod(EngineersExpansion.MODID)
 public final class EngineersExpansion {
@@ -21,11 +24,17 @@ public final class EngineersExpansion {
     public EngineersExpansion(){
         PXContent.construct();
 
-        IEventBus loadingEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        final IEventBus loadingEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        loadingEventBus.addListener(this::setupCommon);
         loadingEventBus.addListener(this::setupClient);
+
+        MinecraftForge.EVENT_BUS.register(this);
+    }
+    private void setupCommon(FMLCommonSetupEvent event){
+        CapabilityPoweredDevice.register();
     }
 
-    private void setupClient(final FMLClientSetupEvent event)
+    private void setupClient(FMLClientSetupEvent event)
     {
         event.enqueueWork(() ->
         {

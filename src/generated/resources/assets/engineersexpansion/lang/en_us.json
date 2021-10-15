@@ -4,6 +4,7 @@
   "block.engineersexpansion.powered_steel_rail": "Powered Steel Rail",
   "block.engineersexpansion.steel_rail": "Steel Rail",
   "block.engineersexpansion.steel_rail_intersection": "Steel Rail Intersection",
+  "info.engineersexpansion.energyStored": "Energy stored: %1$dRF/%2$dRF",
   "item.engineersexpansion.tachometer": "Tachometer",
   "itemGroup.engineersexpansion": "Engineer's Expansion"
 }

@@ -1,0 +1,10 @@
+{
+  "parent": "engineersexpansion:item/tachometer_base_on",
+  "textures": {
+    "decimalDot": "engineersexpansion:digit/decimal_dot",
+    "unit": "engineersexpansion:digit/unit_blocks_per_second",
+    "digit2": "engineersexpansion:digit/digit_0",
+    "digit1": "engineersexpansion:digit/digit_6",
+    "decimalDigit1": "engineersexpansion:digit/digit_6"
+  }
+}

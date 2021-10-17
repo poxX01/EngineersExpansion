@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.energy.CapabilityEnergy;
 import poxx.engineersexpansion.common.PXContent;
 import poxx.engineersexpansion.data.client.PXLanguageProvider;
 import poxx.engineersexpansion.server.capabilities.powereddevice.CapabilityPoweredDevice;
@@ -40,7 +41,7 @@ public class Tachometer extends Item {
     @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(ItemStack itemStack, @Nullable World world, List<ITextComponent> list, ITooltipFlag flag) {
-        int currentEnergy = itemStack.getShareTag() != null ? itemStack.getShareTag().getCompound("PoweredDevice").getInt("energyStored") : 0;
+        int currentEnergy = itemStack.getShareTag().getInt("energyStored");
         list.add(new TranslationTextComponent(PXLanguageProvider.infoEnergyStored,
                 currentEnergy,
                 maxEnergy));
@@ -48,25 +49,27 @@ public class Tachometer extends Item {
     @Override
     public CompoundNBT getShareTag(ItemStack itemStack){
         CompoundNBT currentNBT = itemStack.hasTag() ?  itemStack.getTag() : new CompoundNBT();
+        itemStack.getCapability(CapabilityEnergy.ENERGY).ifPresent(instance -> currentNBT.putInt("energyStored", instance.getEnergyStored()));
         itemStack.getCapability(CapabilityPoweredDevice.POWERED_DEVICE).ifPresent(consumer -> {
             if (CapabilityPoweredDevice.POWERED_DEVICE != null) currentNBT.put("PoweredDevice", CapabilityPoweredDevice.POWERED_DEVICE.writeNBT(consumer, null));
         });
         return currentNBT;
     }
-    @Override
-    public void readShareTag(ItemStack itemStack, @Nullable CompoundNBT nbt)
-    {
-        itemStack.setTag(nbt);
-        if (nbt == null) return;
-        itemStack.getCapability(CapabilityPoweredDevice.POWERED_DEVICE).ifPresent(
-                consumer -> CapabilityPoweredDevice.POWERED_DEVICE.readNBT(consumer, null, nbt.getCompound("PoweredDevice")));
-    }
+//    @Override
+//    public void readShareTag(ItemStack itemStack, @Nullable CompoundNBT nbt)
+//    {
+//        itemStack.setTag(nbt);
+//        if (nbt == null) return;
+//        itemStack.getCapability(CapabilityEnergy.ENERGY).ifPresent(consumer ->
+//                CapabilityEnergy.ENERGY.readNBT(consumer, null, nbt.get("energyStored")));
+//        itemStack.getCapability(CapabilityPoweredDevice.POWERED_DEVICE).ifPresent(consumer ->
+//                CapabilityPoweredDevice.POWERED_DEVICE.readNBT(consumer, null, nbt.getCompound("PoweredDevice")));
+//    }
     @Override
     public void inventoryTick(ItemStack itemStack, World world, Entity holder, int itemSlot, boolean isSelected){
         if (!world.isClientSide){
-            itemStack.getCapability(CapabilityPoweredDevice.POWERED_DEVICE).ifPresent(consumer -> {
-                        consumer.useTick(1);
-                        if (!isSelected) consumer.advanceIdleTick();});
+            itemStack.getCapability(CapabilityPoweredDevice.POWERED_DEVICE).ifPresent(consumer ->
+                        consumer.useTick(1, itemStack.getCapability(CapabilityEnergy.ENERGY).orElse(null), isSelected));
         }
     }
     @Override
@@ -81,4 +84,23 @@ public class Tachometer extends Item {
         }
         return ActionResult.pass(itemStack);
     }
+
+    //Try IForgeItem method instead:
+    @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged)
+    {
+        return !oldStack.equals(newStack); // !ItemStack.areItemStacksEqual(oldStack, newStack);
+    }
+//    @Override
+//    public boolean canBeDepleted() {
+//        return false;
+//    }
+//    @Override
+//    public boolean isEnchantable(ItemStack itemStack) {
+//        return false;
+//    }
+//    @Override
+//    public boolean isRepairable(ItemStack itemStack) {
+//        return false;
+//    }
 }

@@ -1,21 +1,19 @@
 package poxx.engineersexpansion.server.capabilities.powereddevice;
 
-import net.minecraftforge.energy.EnergyStorage;
+import net.minecraftforge.energy.IEnergyStorage;
 
-public class PoweredDevice extends EnergyStorage {
+public class PoweredDevice {
     public int energy;
     protected boolean isOn;
     protected boolean autoOff;
     protected int ticksSinceIdle;
     protected int maxTicksIdleThreshold;
 
-    public PoweredDevice(int maxEnergy, int maxTicksIdleThreshold){
-        super(maxEnergy);
+    public PoweredDevice(int maxTicksIdleThreshold){
         this.isOn = false;
         this.autoOff = true;
         this.ticksSinceIdle = 0;
         this.maxTicksIdleThreshold = maxTicksIdleThreshold;
-        this.energy = maxEnergy;
     }
     public boolean getIsOn(){
         return isOn;
@@ -39,9 +37,12 @@ public class PoweredDevice extends EnergyStorage {
             if (ticksSinceIdle >= maxTicksIdleThreshold) toggleIsOn();
         }
     }
-    public void useTick(int maxExtract){
+    public void useTick(int useEnergy, IEnergyStorage energyStorage, boolean isSelected){
+        //Consume energy if on, sufficient energy can't be drawn, turn off.
         if (this.isOn){
-            if (this.extractEnergy(maxExtract, false) == 0) toggleIsOn();
+            if (energyStorage.extractEnergy(useEnergy, false) == 0) toggleIsOn();
+            if (isSelected) ticksSinceIdle = 0;
+            else advanceIdleTick();
         }
     }
 }

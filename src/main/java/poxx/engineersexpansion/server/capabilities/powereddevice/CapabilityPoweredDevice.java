@@ -22,7 +22,6 @@ public class CapabilityPoweredDevice {
                         compoundNBT.putBoolean("isOn", instance.getIsOn());
                         compoundNBT.putBoolean("autoOff", instance.getAutoOff());
                         compoundNBT.putInt("ticksSinceIdle", instance.getTicksSinceIdle());
-                        compoundNBT.putInt("energyStored", instance.getEnergyStored());
                         EngineersExpansion.LOGGER.debug(compoundNBT.getAsString());
                         return compoundNBT;
                     }
@@ -33,9 +32,8 @@ public class CapabilityPoweredDevice {
                         instance.isOn = compoundNBT.getBoolean("isOn");
                         instance.autoOff = compoundNBT.getBoolean("autoOff");
                         instance.ticksSinceIdle = compoundNBT.getInt("ticksSinceIdle");
-                        instance.energy = compoundNBT.getInt("energyStored");
                     }
                 },
-                () -> new PoweredDevice(1000, 200));
+                () -> new PoweredDevice(200));
     }
 }

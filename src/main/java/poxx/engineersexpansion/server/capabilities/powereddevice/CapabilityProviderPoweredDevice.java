@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 
 public class CapabilityProviderPoweredDevice implements ICapabilitySerializable<INBT> {
     private final PoweredDevice poweredDevice;
-    private final EnergyStorage energyStorage;
+    private final EnergyStorage energyStorage; //Provide EnergyStorage capability with it for compability with other mods
     private final LazyOptional<PoweredDevice> capabilityInstancePoweredDevice;
     private final LazyOptional<EnergyStorage> capabilityInstanceEnergyStorage;
 
@@ -27,7 +27,7 @@ public class CapabilityProviderPoweredDevice implements ICapabilitySerializable<
     @Nonnull
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> capability, @Nullable Direction side) {
         LazyOptional<T> returnValue;
-        if (capability == null) returnValue = LazyOptional.empty();
+        if (capability == null) returnValue = LazyOptional.empty(); //required, otherwise it returns CapabilityEnergy despite being null
         else if (capability == CapabilityEnergy.ENERGY) returnValue = this.capabilityInstanceEnergyStorage.cast();
         else if (capability == CapabilityPoweredDevice.POWERED_DEVICE) returnValue = this.capabilityInstancePoweredDevice.cast();
         else returnValue = LazyOptional.empty();

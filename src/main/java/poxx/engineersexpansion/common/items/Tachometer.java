@@ -55,52 +55,40 @@ public class Tachometer extends Item {
         });
         return currentNBT;
     }
-//    @Override
-//    public void readShareTag(ItemStack itemStack, @Nullable CompoundNBT nbt)
-//    {
-//        itemStack.setTag(nbt);
-//        if (nbt == null) return;
-//        itemStack.getCapability(CapabilityEnergy.ENERGY).ifPresent(consumer ->
-//                CapabilityEnergy.ENERGY.readNBT(consumer, null, nbt.get("energyStored")));
-//        itemStack.getCapability(CapabilityPoweredDevice.POWERED_DEVICE).ifPresent(consumer ->
-//                CapabilityPoweredDevice.POWERED_DEVICE.readNBT(consumer, null, nbt.getCompound("PoweredDevice")));
-//    }
     @Override
     public void inventoryTick(ItemStack itemStack, World world, Entity holder, int itemSlot, boolean isSelected){
         if (!world.isClientSide){
-            itemStack.getCapability(CapabilityPoweredDevice.POWERED_DEVICE).ifPresent(consumer ->
-                        consumer.useTick(1, itemStack.getCapability(CapabilityEnergy.ENERGY).orElse(null), isSelected));
+            if (isSelected) {
+                itemStack.getCapability(CapabilityPoweredDevice.POWERED_DEVICE).ifPresent(poweredDevice -> {
+                        if (poweredDevice.getIsOn()) poweredDevice.useTick(1, itemStack.getCapability(CapabilityEnergy.ENERGY).orElse(null));
+                });
+            }
         }
     }
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getItemInHand(hand);
         if (!world.isClientSide){
-            itemStack.getCapability(CapabilityPoweredDevice.POWERED_DEVICE).ifPresent(consumer -> {
-            if (user.isShiftKeyDown()) consumer.toggleAutoOff();
-            else consumer.toggleIsOn();
+            itemStack.getCapability(CapabilityPoweredDevice.POWERED_DEVICE).ifPresent(poweredDevice -> {
+                poweredDevice.toggleIsOn(itemStack.getCapability(CapabilityEnergy.ENERGY).orElse(null));
             });
             return ActionResult.consume(itemStack);
         }
         return ActionResult.pass(itemStack);
     }
-
-    //Try IForgeItem method instead:
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged)
     {
-        return !oldStack.equals(newStack); // !ItemStack.areItemStacksEqual(oldStack, newStack);
+        return slotChanged;
     }
-//    @Override
-//    public boolean canBeDepleted() {
-//        return false;
-//    }
-//    @Override
-//    public boolean isEnchantable(ItemStack itemStack) {
-//        return false;
-//    }
-//    @Override
-//    public boolean isRepairable(ItemStack itemStack) {
-//        return false;
-//    }
+    @Override
+    public boolean showDurabilityBar(ItemStack stack)
+    {
+        return true;
+    }
+    @Override
+    public double getDurabilityForDisplay(ItemStack stack)
+    {
+        return 1 - ((double)getShareTag(stack).getInt("energyStored") / (double)maxEnergy);
+    }
 }

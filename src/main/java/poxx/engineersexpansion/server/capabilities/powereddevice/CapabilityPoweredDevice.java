@@ -6,7 +6,6 @@ import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
-import poxx.engineersexpansion.EngineersExpansion;
 
 public class CapabilityPoweredDevice {
     @CapabilityInject(PoweredDevice.class)
@@ -20,9 +19,8 @@ public class CapabilityPoweredDevice {
                     {
                         CompoundNBT compoundNBT = new CompoundNBT();
                         compoundNBT.putBoolean("isOn", instance.getIsOn());
-                        compoundNBT.putBoolean("autoOff", instance.getAutoOff());
-                        compoundNBT.putInt("ticksSinceIdle", instance.getTicksSinceIdle());
-                        EngineersExpansion.LOGGER.debug(compoundNBT.getAsString());
+//                        compoundNBT.putBoolean("autoOff", instance.getAutoOff());
+//                        compoundNBT.putInt("ticksSinceIdle", instance.getTicksSinceIdle());
                         return compoundNBT;
                     }
                     @Override
@@ -30,8 +28,8 @@ public class CapabilityPoweredDevice {
                     {
                         CompoundNBT compoundNBT = (CompoundNBT) nbt;
                         instance.isOn = compoundNBT.getBoolean("isOn");
-                        instance.autoOff = compoundNBT.getBoolean("autoOff");
-                        instance.ticksSinceIdle = compoundNBT.getInt("ticksSinceIdle");
+//                        instance.autoOff = compoundNBT.getBoolean("autoOff");
+//                        instance.ticksSinceIdle = compoundNBT.getInt("ticksSinceIdle");
                     }
                 },
                 () -> new PoweredDevice(200));

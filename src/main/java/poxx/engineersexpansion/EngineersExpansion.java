@@ -11,6 +11,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import poxx.engineersexpansion.client.MinecartSpeedPropertyGetter;
+import poxx.engineersexpansion.client.OnOffPropertyGetter;
 import poxx.engineersexpansion.common.PXContent;
 import poxx.engineersexpansion.server.capabilities.powereddevice.CapabilityPoweredDevice;
 
@@ -41,6 +42,9 @@ public final class EngineersExpansion {
             ItemModelsProperties.register(PXContent.PXItems.TACHOMETER.get(),
                     new ResourceLocation(MODID, "minecart_speed"),
                     new MinecartSpeedPropertyGetter());
+            ItemModelsProperties.register(PXContent.PXItems.TACHOMETER.get(),
+                    new ResourceLocation(MODID, "is_on"),
+                    new OnOffPropertyGetter());
         });
     }
 }

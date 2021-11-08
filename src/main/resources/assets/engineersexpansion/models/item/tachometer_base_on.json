@@ -4,13 +4,13 @@
 		"is_on": "engineersexpansion:item/is_on",
 		"auto_off": "engineersexpansion:item/auto_off",
 		"frame": "engineersexpansion:item/tachometer_frame",
-		"background": "engineersexpansion:item/tachometerbackground",
-		"unit": "engineersexpansion:item/tachometerbackground",
-		"digit2": "engineersexpansion:item/tachometerbackground",
-		"digit1": "engineersexpansion:item/tachometerbackground",
-		"decimalDot": "engineersexpansion:item/tachometerbackground",
-		"decimalDigit1": "engineersexpansion:item/tachometerbackground",
-		"particle": "engineersexpansion:item/tachometerbackground"
+		"background": "engineersexpansion:item/tachometer_background",
+		"unit": "engineersexpansion:item/tachometer_background",
+		"digit2": "engineersexpansion:item/tachometer_background",
+		"digit1": "engineersexpansion:item/tachometer_background",
+		"decimalDot": "engineersexpansion:item/tachometer_background",
+		"decimalDigit1": "engineersexpansion:item/tachometer_background",
+		"particle": "engineersexpansion:item/tachometer_background"
 	},
 	"elements": [
 		{

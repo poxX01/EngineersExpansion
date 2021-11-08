@@ -49,22 +49,26 @@ final class PXBlockStateProvider extends BlockStateProvider {
                 .forEach(registryObject -> itemModels().withExistingParent(registryObject.getId().getPath(), itemGenerated.getLocation())
                         .texture("layer0", "block/" + registryObject.getId().getPath()));
 
+        //TODO Add generation of predicate PoweredDevice.isOn and combine them (might need a PropertyGetter class, in which case):
+        //TODO Obtain Capability via Tachometer.getShareTag(itemstack)
         //Generate Tachometer speed readout models and assign predicates to the base model
         ResourceLocation tachometerOnBasePath = modLoc("item/tachometer_base_on");
         DecimalFormat decimalFormat = new DecimalFormat("00.0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));
         for (float f = 0F; f < 24.1F; f += 0.1F){
-            String fString = decimalFormat.format(f);
-            char[] fChars = fString.toCharArray(); //fChars[2] is the decimal point
+            String formattedString = decimalFormat.format(f);
+            char[] formatChars = formattedString.toCharArray(); //fChars[2] is the decimal point
             ModelFile currentModel = itemModels().withExistingParent("tachometer/tachometer_" +
-                            fString.replace('.', '_'), tachometerOnBasePath)
+                            formattedString.replace('.', '_'), tachometerOnBasePath)
                     .texture("decimalDot", "digit/decimal_dot")
                     .texture("unit", "digit/unit_blocks_per_second")
-                    .texture("digit2", "digit/digit_"+fChars[0])
-                    .texture("digit1", "digit/digit_"+fChars[1])
-                    .texture("decimalDigit1", "digit/digit_"+fChars[3]);
+                    .texture("digit2", "digit/digit_"+formatChars[0])
+                    .texture("digit1", "digit/digit_"+formatChars[1])
+                    .texture("decimalDigit1", "digit/digit_"+formatChars[3]);
             itemModels()
                     .withExistingParent("item/tachometer", tachometerOnBasePath)
-                    .override().predicate(modLoc("minecart_speed"), f/24.1F).model(currentModel);
+                    .override().predicate(modLoc("minecart_speed"), f/24.1F)
+                    .predicate(modLoc("is_on"), 1F)
+                    .model(currentModel);
         }
     }
     private ConfiguredModel[] getBasicRailModel(BlockState blockState){

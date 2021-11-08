@@ -49,8 +49,6 @@ final class PXBlockStateProvider extends BlockStateProvider {
                 .forEach(registryObject -> itemModels().withExistingParent(registryObject.getId().getPath(), itemGenerated.getLocation())
                         .texture("layer0", "block/" + registryObject.getId().getPath()));
 
-        //TODO Add generation of predicate PoweredDevice.isOn and combine them (might need a PropertyGetter class, in which case):
-        //TODO Obtain Capability via Tachometer.getShareTag(itemstack)
         //Generate Tachometer speed readout models and assign predicates to the base model
         ResourceLocation tachometerOnBasePath = modLoc("item/tachometer_base_on");
         DecimalFormat decimalFormat = new DecimalFormat("00.0", DecimalFormatSymbols.getInstance(Locale.ENGLISH));

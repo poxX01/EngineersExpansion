@@ -15,6 +15,8 @@ import poxx.engineersexpansion.client.OnOffPropertyGetter;
 import poxx.engineersexpansion.common.PXContent;
 import poxx.engineersexpansion.server.capabilities.powereddevice.CapabilityPoweredDevice;
 
+//TODO Add featureset into IEs booklet
+//TODO Make rail waterloggable
 @Mod(EngineersExpansion.MODID)
 public final class EngineersExpansion {
     public static final String MODID = "engineersexpansion";
